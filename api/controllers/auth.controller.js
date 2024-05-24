@@ -42,13 +42,13 @@ export const signin = async(req,res,next)=>{
         if(!validPassword){
             return next(errorHandler(400,'Invalid Password'));
         }
-        const token = jwt.sign(
+        const token = jwt.sign( //sign id with secret key of the user given by JWT_SECRET
             {id: validUser._id}, process.env.JWT_SECRET);//session expires when user closes the browser
-            const {password:_pass, ...rest}= validUser._doc;
+            const {password:_pass, ...rest}= validUser._doc; 
 
             res.status(200).cookie('access_token',token,{ //sent access token  to cookie
                 httpOnly:true
-            }).json(rest); //send this back to user given by validUser
+            }).json(rest); //send this back to user given by validUser without the password
     } catch (error) {
         next(error);
     }
