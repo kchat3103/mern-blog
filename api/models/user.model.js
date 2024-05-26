@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 //create user model
 
@@ -17,7 +17,12 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
     }, 
-    }, {timestamps:true} // to save time of creation of users and time of update
+    profilePicture:{
+        type:String,
+        default : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+      },
+    }, 
+    {timestamps:true} // to save time of creation of users and time of update
 );
 
 const User = mongoose.model('User',userSchema); //create model
