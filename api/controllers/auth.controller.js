@@ -43,7 +43,7 @@ export const signin = async(req,res,next)=>{
             return next(errorHandler(400,'Invalid Password'));
         }
         const token = jwt.sign( //sign id with secret key of the user given by JWT_SECRET
-            {id: validUser._id}, process.env.JWT_SECRET);//session expires when user closes the browser
+            {id: validUser._id, isAdmin: validUser.isAdmin}, process.env.JWT_SECRET);//session expires when user closes the browser
             const {password:_pass, ...rest}= validUser._doc; 
 
             res.status(200).cookie('access_token',token,{ //sent access token  to cookie
@@ -60,7 +60,7 @@ export const google = async(req,res,next) =>{
         const user = await User.findOne({email}); //check if user exists by searching for email
         if(user){ //if user exists
             const {password:pass, ...rest} = validUser._doc;
-            const token = jwt.sign({id:user._id}, process.env.JWT_SECRET)
+            const token = jwt.sign({id:user._id, isAdmin: user.isAdmin}, process.env.JWT_SECRET)
             res.status(200).cookie('access_token', token,{
                 httpOnly:true,
             }).json(rest)
@@ -80,7 +80,7 @@ export const google = async(req,res,next) =>{
           });
           await newUser.save();
           const { password:pass, ...rest } = validUser._doc
-          const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET)
+          const token = jwt.sign({ id: newUser._id , isAdmin: newUser.isAdmin}, process.env.JWT_SECRET)
         res
             .status(200)
             .cookie('access_token', token, {
