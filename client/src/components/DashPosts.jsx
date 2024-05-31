@@ -11,7 +11,7 @@ export default function DashPosts() {
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [postIdToDelete, setPostIdToDelete] = useState('');
-  useEffect(() => {
+  useEffect(() => { //send a request to the api from our application
     const fetchPosts = async () => {
       try {
         const res = await fetch(`/api/post/getposts?userId=${currentUser._id}`);
@@ -29,7 +29,7 @@ export default function DashPosts() {
     if (currentUser.isAdmin) {
       fetchPosts();
     }
-  }, [currentUser._id]);
+  }, [currentUser._id]); //use effect is used whenever current user changes
 
   const handleShowMore = async () => {
     const startIndex = userPosts.length;
