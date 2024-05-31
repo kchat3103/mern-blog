@@ -11,6 +11,9 @@ import PrivateRoute from './components/PrivateRoute.jsx';
 import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute.jsx';
 import CreatePosts from './pages/CreatePosts.jsx';
 import UpdatePosts from './pages/UpdatePosts.jsx';
+import PostPage from './pages/PostPage.jsx';
+
+//based on the slug, fetch the data of a particular page, for PostPage
 
 export default function App() {
   return (
@@ -29,6 +32,7 @@ export default function App() {
           <Route path='/update-post/:postId' element={<UpdatePosts/>} />
         </Route>
         <Route path='/projects' element={<Projects />} />
+        <Route path='/post/:postSlug' element={<PostPage />} />  
       </Routes>
       <Footer />
     </BrowserRouter>

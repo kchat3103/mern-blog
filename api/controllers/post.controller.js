@@ -40,7 +40,7 @@ export const getposts = async (req,res,next)=>{
         const posts = await Post.find({ //using post modal from post.model.js
             ...(req.query.userId && {userId: req.query.userId}), //find for this user
             ...(req.query.category && {category: req.query.category}), //find for this category
-            ...(req.query.slug && {category: req.query.slug}), //find for this slug
+            ...(req.query.slug && {slug: req.query.slug}), //find for this slug
             ...(req.query.postId && {_id: req.query.postId}), //find for this post id, in mongoDB, post id is _id
             ...(req.query.searchTerm && {
                 $or:[ //$or for finding whatever they want in the blog posts easier using both title and content of the post together
