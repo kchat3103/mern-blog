@@ -12,12 +12,14 @@ import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute.jsx';
 import CreatePosts from './pages/CreatePosts.jsx';
 import UpdatePosts from './pages/UpdatePosts.jsx';
 import PostPage from './pages/PostPage.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
 
 //based on the slug, fetch the data of a particular page, for PostPage
 
 export default function App() {
   return (
     <BrowserRouter>
+    <ScrollToTop/>
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
